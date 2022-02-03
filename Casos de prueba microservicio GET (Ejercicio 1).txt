@@ -1,0 +1,81 @@
+Caso 1: 
+	Validar que al enviar un request y el resultado sea positivo el status sea ok
+Scenario: 
+	Con un token valido quiero enviar un request para validar la respuesta 
+Preconditions: 
+	GIVEN tener la fecha en el formato DD-MM-AAAA
+	AND tener un header Country <Country>
+	AND tener un header City <City>
+Steps:
+	WHEN envio el request
+	THEN obtengo un status ok
+	AND un codigo http 200
+	AND en el body del response obtengo: { " temperatura actual ": "<City>", " temperatura dia siguiente ": "<City>"},
+Examples:
+	||| Country | City
+	|| Chile | Santiago
+	|| Chile | Arica
+	|| Chile | Chiloe
+	|| Argentina | BuenosAires
+	|| Argentina | SanJuan
+
+Caso 2:
+	Validar codigo al enviar un request y haya una falla de conexión
+Scenario:
+	Con un token valido quiero enviar un request para validar la respuesta del microservicio al tener una falla de conexión  
+Preconditions:
+	GIVEN tener la fecha en el formato DD-MM-AAAA
+	AND tener un header Country <Country>
+	AND tener un header City <City>
+	AND tener falla de conexion 
+Steps:
+	WHEN envio el request
+	THEN obtengo un status "server error"
+	AND un codigo http 500
+	AND en el body del response obtengo: { " temperatura actual ": "<City>", " temperatura dia siguiente ": "<City>"},
+Examples:
+	||| Country | City
+	|| Chile | Santiago
+	|| Chile | Arica
+	|| Chile | Chiloe
+	|| Argentina | BuenosAires
+	|| Argentina | SanJuan
+
+Caso 3:
+	Validar respuesta al setear un pais o ciudad distinta a lo señalado
+Scenario:
+	Con un token valido quiero enviar un request seteando un valor distinto a lo aceptado en los header para validar la respuesta del microservicio 
+Preconditions:
+	GIVEN tener la fecha en el formato DD-MM-AAAA
+	AND tener un header Country <Country>
+	AND tener un header City <City>
+Steps:
+	WHEN envio el request
+	THEN obtengo un response: "País y ciudad incorrectos"
+	AND un codigo http 400
+Examples:
+	||| Country | City
+	|| chile | Santiago
+	|| Chile | arica
+	|| CHILE | Chiloe
+	|| Venezuela | Buenos Aires
+	|| Argentina | Caracas
+Caso 4: 
+	Validar status al enviar un request con el formato de fecha incorrecto
+Scenario: 
+	Con un token valido quiero enviar un request con el formato de fecha incorrecto para validar el estatus 
+Preconditions: 
+	GIVEN tener la fecha en el formato AAAA-MM-DD
+	AND tener un header Country <Country>
+	AND tener un header City <City>
+Steps:
+	WHEN envio el request
+	THEN obtengo un status "client error"
+	AND un codigo http 400
+Examples:
+	||| Country | City
+	|| Chile | Santiago
+	|| Chile | Arica
+	|| Chile | Chiloe
+	|| Argentina | BuenosAires
+	|| Argentina | SanJuan

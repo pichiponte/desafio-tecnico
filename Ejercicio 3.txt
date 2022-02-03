@@ -1,0 +1,9 @@
+Para crear los casos de prueba se utilizo el lenguaje Gherkin, los tipos de prueba empleados para ambos ejercicios fueron funcionales.
+Tecnicas de pruebas empleadas:
+	Análisis de valores límite y tabla de decisiones, en el ejercicio número 1 cuando se setean valores que no corresponden a la ciudad y pais, tambien cuando se setea el formato de fecha incorrecto.
+
+Puntos a tener en cuenta cuando probamos una API:
+
+	Tener claridad de la autenticación que ocupa la API, para así considerar los parámetros a utilizar.
+	Validar la estructura y cuerpo de la petición y respuesta del endpoint.
+	Considerar y tomar como referencia el contrato de la API, para así poder entender los métodos y la estructura de cada uno de ellos.

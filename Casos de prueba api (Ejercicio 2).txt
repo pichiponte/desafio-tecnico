@@ -1,0 +1,109 @@
+ API https://jsonplaceholder.typicode.com/
+
+EndPoint: https://jsonplaceholder.typicode.com/photos
+
+Caso 1:
+	Validar error al tener error de comunicación con el Backend
+Scenario:
+	Con un token valido quiero enviar un request para validar error cuando no haya comunicación entre el endpoint y el backend
+Preconditions:
+	GIVEN tener error de comunicación con el backend
+Steps:
+	WHEN envio el request
+	THEN obtengo un codigo http 500
+
+Caso 2:
+	Validar codigo al enviar un request con token invalido
+Scenario:
+	Con un token quiero enviar un request para validar la respuesta del endpoint
+Preconditions:
+	GIVEN un token invalido
+Steps:
+	WHEN envio el request
+	THEN obtengo un codigo http 401
+
+Caso 3:
+	Validar el response del endpoint
+Scenario:
+	Con un token valido quiero enviar un request para validar que devuelva la estructura correcta
+Preconditions:
+	GIVEN conocer el response content type del endpoint 
+Steps:
+	WHEN envio el request
+	THEN obtengo un codigo http 200
+	AND valido que la estructura sea estandar para todos los objetos
+
+Caso 4:
+	Validar que en el response del endpoint no hayan objetos duplicados
+Scenario:
+	Con un token valido quiero enviar un request para validar que el response no tenga objetos repetidos
+Preconditions:
+	GIVEN un token valido
+Steps:
+	WHEN envio el request
+	THEN obtengo un codigo http 200
+	AND valido que el response no tiene objetos repetidos
+
+
+Endpoint: https://jsonplaceholder.typicode.com/users
+
+Caso 1:
+	Validar email en el response del endpoint 
+Scenario:
+	Con un token valido quiero enviar un request para validar email en el response 
+Preconditions:
+	GIVEN un token valido
+Steps:
+	WHEN envio el request
+	THEN obtengo un codigo http 200
+	AND valido que el email tenga un formato como el siguiente: userName@supplier.domain
+
+Caso 2:
+	Validar id en el response del endpoint 
+Scenario:
+	Con un token valido quiero enviar un request para validar que el id sea unico 
+Preconditions:
+	GIVEN un token valido
+Steps:
+	WHEN envio el request
+	THEN obtengo un codigo http 200
+	AND valido que el id sea unico 
+
+Caso 3:
+	Validar que en el response del endpoint no hayan objetos duplicados
+Scenario:
+	Con un token valido quiero enviar un request para validar que el response no tenga objetos repetidos
+Preconditions:
+	GIVEN un token valido
+Steps:
+	WHEN envio el request
+	THEN obtengo un codigo http 200
+	AND valido que el response no tiene objetos repetidos
+
+
+Endpoint: https://jsonplaceholder.typicode.com/albums
+
+Caso 1:
+	Validar id en el response del endpoint 
+Scenario:
+	Con un token valido quiero enviar un request para validar que el id sea unico 
+Preconditions:
+	GIVEN un token valido
+Steps:
+	WHEN envio el request
+	THEN obtengo un codigo http 200
+	AND valido que el id sea unico 
+
+Caso 2:
+	Validar que en el response del endpoint no hayan objetos duplicados
+Scenario:
+	Con un token valido quiero enviar un request para validar que el response no tenga objetos repetidos
+Preconditions:
+	GIVEN un token valido
+Steps:
+	WHEN envio el request
+	THEN obtengo un codigo http 200
+	AND valido que el response no tiene objetos repetidos
+
+	
+
